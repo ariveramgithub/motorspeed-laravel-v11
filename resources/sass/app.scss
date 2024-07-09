@@ -1,0 +1,39 @@
+// Fonts
+@import url('https://fonts.bunny.net/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Buttons
+$primary: #b72a19;
+
+// Card
+$card-cap-bg: #ed4b00;
+$card-cap-color: #ffffff;
+$card-border-width: 0;
+
+// Table
+$table-hover-bg: #f6c44e;
+$table-striped-bg: #f0e5cc;
+$table-border-color: #f0e5cc;
+
+// FullCalendar
+.fc-button-primary {
+    background-color: #b72a19 !important;
+    border-color: #b72a19 !important;
+}
+.fc-button-primary:hover {
+    background-color: #9c2415 !important;
+    border-color: #9c2415 !important;
+}
+
+// Alerts
+.alert {
+    position: fixed !important;
+    bottom: 0;
+    z-index: 1040;
+    right: 5vh;
+}
+
+// Bootstrap
+@import 'bootstrap/scss/bootstrap';
