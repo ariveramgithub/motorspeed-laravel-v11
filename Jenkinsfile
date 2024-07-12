@@ -28,7 +28,7 @@ pipeline {
       steps {
         script {
           try {
-            sh "docker run -d --name motorspeed_laravel \
+            sh "docker run -d --name ${motorspeed-laravel11-prod} \
             -p ${laravel_port}:8000 \
             --env DB_HOST=${mariadb_hostname} \
             --env DB_PORT=3306 \
