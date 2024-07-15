@@ -16,9 +16,8 @@ pipeline {
         script {
           try {
             sh "docker rm -f ${container_name}"
-            echo "Remove container ${container_name} done!"
           } catch(e) {
-            echo "Container name ${container_name} not found"
+            echo e
           }
         }
       }
@@ -28,7 +27,7 @@ pipeline {
       steps {
         script {
           try {
-            sh "docker run -d --name ${motorspeed-laravel11-prod} \
+            sh "docker run -d --name ${container_name} \
             -p ${laravel_port}:8000 \
             --env DB_HOST=${mariadb_hostname} \
             --env DB_PORT=3306 \
