@@ -32,7 +32,7 @@ pipeline {
             --env DB_HOST=${mariadb_hostname} \
             --env DB_PORT=3306 \
             --env DB_DATABASE=${mariadb_database} \
-            --env DB_USERNAME=${motorspeed_dba} \
+            --env DB_USERNAME=${mariadb_user} \
             --env DB_PASSWORD=${mariadb_password} \
             --network ${network_name} \
             --volume ${volume_path}:/app \
@@ -41,7 +41,7 @@ pipeline {
 
             echo "Container ${container_name} done!"
           } catch(e){
-            echo "Container ${container_name} already exists"
+            echo e
           }
         }
       }
