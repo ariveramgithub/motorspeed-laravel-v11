@@ -31,5 +31,7 @@ services:
       - "9012:8000"
     networks:
       - motorspeed-prod-net
+    depends_on:
+      - mariadb
   networks:
     motorspeed-prod-net:
