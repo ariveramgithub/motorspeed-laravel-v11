@@ -1,3 +1,3 @@
 FROM bitnami/laravel:latest
-COPY .env.prod .env.prod
+COPY .env.prod /app/.env.prod
 EXPOSE 9012
