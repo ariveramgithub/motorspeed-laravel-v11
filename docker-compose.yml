@@ -32,4 +32,4 @@ services:
     networks:
       - motorspeed-prod-net
   networks:
-    motorspeed-prod-net
+    motorspeed-prod-net:
