@@ -27,19 +27,7 @@ pipeline {
       steps {
         script {
           try {
-            sh "docker run -d --name ${container_name} \
-            -p ${laravel_port}:8000 \
-            --env DB_HOST=${mariadb_hostname} \
-            --env DB_PORT=3306 \
-            --env DB_DATABASE=${mariadb_database} \
-            --env DB_USERNAME=${mariadb_user} \
-            --env DB_PASSWORD=${mariadb_password} \
-            --network ${network_name} \
-            --volume ${volume_path}:/app \
-            --restart unless-stopped \
-            bitnami/laravel:latest"
-
-            sh "docker cp .env.prod ${container_name}:/app"
+            sh "docker-compose up -d"
 
             echo "Container ${container_name} done!"
           } catch(e){
@@ -47,6 +35,32 @@ pipeline {
           }
         }
       }
-    }
+    // }
+    // stage('Build') {
+    //   agent any
+    //   steps {
+    //     script {
+    //       try {
+    //         sh "docker run -d --name ${container_name} \
+    //         -p ${laravel_port}:8000 \
+    //         --env DB_HOST=${mariadb_hostname} \
+    //         --env DB_PORT=3306 \
+    //         --env DB_DATABASE=${mariadb_database} \
+    //         --env DB_USERNAME=${mariadb_user} \
+    //         --env DB_PASSWORD=${mariadb_password} \
+    //         --network ${network_name} \
+    //         --volume ${volume_path}:/app \
+    //         --restart unless-stopped \
+    //         bitnami/laravel:latest"
+
+    //         sh "docker cp .env.prod ${container_name}:/app"
+
+    //         echo "Container ${container_name} done!"
+    //       } catch(e){
+    //         echo e
+    //       }
+    //     }
+    //   }
+    // }
   }
 }
