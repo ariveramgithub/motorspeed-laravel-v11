@@ -33,5 +33,6 @@ services:
       - motorspeed-prod-net
     depends_on:
       - mariadb
-  networks:
-    motorspeed-prod-net:
+
+networks:
+  motorspeed-prod-net:
