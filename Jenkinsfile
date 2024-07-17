@@ -52,7 +52,7 @@ pipeline {
         script {
           try {
             def customImage = docker.build("motorspeed/laravel11", "-f Dockerfile .")
-            customImage.run("-p ${laravel_port}:8000 --name ${container_name} --network ${network_name} --restart unless-stopped -v --volume ${volume_path}:/app")
+            customImage.run("-p ${laravel_port}:8000 --name ${container_name} --network ${network_name} --restart unless-stopped --volume ${volume_path}:/app")
             echo "Container ${container_name} done!"
           } catch(e){
             echo e
