@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  mariadb:
+    container_name: motorspeed-mariadb-prod
+    image: bitnami/mariadb:latest
+    volumes:
+      - /home/docker/motorspeed/data:/bitnami/mariadb
+    environment:
+      MARIADB_USER: motorspeed_dba
+      MARIADB_ROOT_PASSWORD: 1dca#SD5.D1ad5
+      MARIADB_PASSWORD: 1234
+      MARIADB_DATABASE: motorspeed_site
+    ports:
+      - "9036:3306"
+    networks:
+      - motorspeed-prod-net
+
+  laravel:
+    container_name: motorspeed-laravel11-prod
+    image: bitnami/laravel:latest
+    volumes:
+      - /home/docker/motorspeed/laravel:/app
+    environment:
+      DB_HOST: motorspeed_site
+      DB_PORT: 3306
+      DB_DATABASE: motorspeed_site
+      DB_USERNAME: motorspeed_dba
+      DB_PASSWORD: 1234
+    ports:
+      - "9012:8000"
+    networks:
+      - motorspeed-prod-net
+  networks:
+    motorspeed-prod-net
