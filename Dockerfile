@@ -1,4 +1,4 @@
 FROM bitnami/laravel:latest
-ADD .env.prod /app/.env.prod
-RUN cp .env.prod .env
+COPY . .
+RUN php artisan migrate
 EXPOSE 9012

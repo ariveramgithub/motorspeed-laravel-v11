@@ -52,7 +52,13 @@ pipeline {
         script {
           try {
             def customImage = docker.build("motorspeed/laravel11", "-f Dockerfile .")
-            customImage.run("-p ${laravel_port}:8000 --name ${container_name} --network ${network_name} --restart unless-stopped --volume ${volume_path}:/app")
+            customImage.run("-p ${laravel_port}:8000 --name ${container_name} --network ${network_name} --restart unless-stopped --volume ${volume_path}:/app \
+            --env DB_HOST=${mariadb_hostname} \
+            --env DB_PORT=3306 \
+            --env DB_DATABASE=${mariadb_database} \
+            --env DB_USERNAME=${mariadb_user} \
+            --env DB_PASSWORD=${mariadb_password} \ 
+            ")
             echo "Container ${container_name} done!"
           } catch(e){
             echo e
