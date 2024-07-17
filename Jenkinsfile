@@ -39,7 +39,7 @@ pipeline {
             --restart unless-stopped \
             bitnami/laravel:latest"
 
-            sh "php artisan migrate"
+            sh "cp -R . ${volume_path}"
 
             echo "Container ${container_name} done!"
           } catch(e){
