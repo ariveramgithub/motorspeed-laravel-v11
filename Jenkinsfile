@@ -57,8 +57,7 @@ pipeline {
             --env DB_PORT=3306 \
             --env DB_DATABASE=${mariadb_database} \
             --env DB_USERNAME=${mariadb_user} \
-            --env DB_PASSWORD=${mariadb_password} \ 
-            ")
+            --env DB_PASSWORD=${mariadb_password}")
             echo "Container ${container_name} done!"
           } catch(e){
             echo e
