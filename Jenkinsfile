@@ -39,7 +39,7 @@ pipeline {
             --restart unless-stopped \
             bitnami/laravel:latest"
 
-            sh "cp -R . ${volume_path}"
+            sh "docker cp . ${container_name}:/app"
 
             echo "Container ${container_name} done!"
           } catch(e){
