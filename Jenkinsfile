@@ -27,7 +27,7 @@ pipeline {
       steps {
         script {
           try {
-            sh "docker-compose up -d"
+            sh "docker compose up -d"
 
             echo "Container ${container_name} done!"
           } catch(e){
