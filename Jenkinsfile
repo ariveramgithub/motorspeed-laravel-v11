@@ -15,7 +15,8 @@ pipeline {
       steps {
         script {
           try {
-            sh "docker rm -f ${container_name}"
+            sh "docker compose down"
+            // sh "docker rm -f ${container_name}"
           } catch(e) {
             echo e
           }
