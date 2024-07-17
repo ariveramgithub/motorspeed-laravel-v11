@@ -22,23 +22,37 @@ pipeline {
         }
       }
     }
+    // stage('Docker Run') {
+    //   agent any
+    //   steps {
+    //     script {
+    //       try {
+    //         sh "docker run -d --name ${container_name} \
+    //         -p ${laravel_port}:8000 \
+    //         --env DB_HOST=${mariadb_hostname} \
+    //         --env DB_PORT=3306 \
+    //         --env DB_DATABASE=${mariadb_database} \
+    //         --env DB_USERNAME=${mariadb_user} \
+    //         --env DB_PASSWORD=${mariadb_password} \
+    //         --network ${network_name} \
+    //         --volume ${volume_path}:/app \
+    //         --restart unless-stopped \
+    //         bitnami/laravel:latest"
+
+    //         echo "Container ${container_name} done!"
+    //       } catch(e){
+    //         echo e
+    //       }
+    //     }
+    //   }
+    // }
     stage('Docker Run') {
       agent any
       steps {
         script {
           try {
-            sh "docker run -d --name ${container_name} \
-            -p ${laravel_port}:8000 \
-            --env DB_HOST=${mariadb_hostname} \
-            --env DB_PORT=3306 \
-            --env DB_DATABASE=${mariadb_database} \
-            --env DB_USERNAME=${mariadb_user} \
-            --env DB_PASSWORD=${mariadb_password} \
-            --network ${network_name} \
-            --volume ${volume_path}:/app \
-            --restart unless-stopped \
-            bitnami/laravel:latest"
-
+            def customImage = docker.build(image_name, "-f Dockerfile .")
+            customImage.run("-p ${laravel_port}:8000 --name ${container_name} --network ${network_name} --restart unless-stopped -v --volume ${volume_path}:/app")
             echo "Container ${container_name} done!"
           } catch(e){
             echo e
